@@ -1,31 +1,32 @@
-name: Node.js CI
+name: CI (Continuous Integration)  
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on:  
+  push:  
+    branches:  
+      - main  # или ваша ветка  
+  pull_request:  
+    branches:  
+      - main  # или ваша ветка  
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+jobs:  
+  build:  
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+    runs-on: ubuntu-latest  
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
+    steps:  
+      - name: Checkout code  
+        uses: actions/checkout@v2  
 
-    - name: Install dependencies
-      run: npm install
+      - name: Set up Node.js  
+        uses: actions/setup-node@v2  
+        with:  
+          node-version: '14' # Укажите версию Node.js  
 
-    - name: Run tests
-      run: npm test
+      - name: Install dependencies  
+        run: npm install  
 
-    - name: Build project
-      run: npm run build
+      - name: Run build  
+        run: npm run build # Замените на вашу команду сборки, если нужно  
+
+      - name: Run tests  
+        run: npm test # Это по желанию, если у вас есть тесты
