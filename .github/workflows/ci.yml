@@ -1,28 +1,31 @@
-name: CI Pipeline
+name: Node.js CI
 
 on:
   push:
     branches:
-      - main  # Запускается при пуше в ветку main
+      - main
   pull_request:
     branches:
-      - main  # Запускается при открытии PR в ветку main
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Указываем ОС для выполнения пайплайна
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Клонируем код репозитория
+      uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3  # Настройка Node.js (если проект использует его)
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
       with:
-        node-version: '16'  # Указываем нужную версию Node.js
+        node-version: 16
 
     - name: Install dependencies
-      run: npm install  # Установка зависимостей проекта
+      run: npm install
 
     - name: Run tests
-      run: npm test  # Запуск тестов проекта
+      run: npm test
+
+    - name: Build project
+      run: npm run build
